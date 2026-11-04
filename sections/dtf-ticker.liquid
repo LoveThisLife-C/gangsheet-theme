@@ -1,21 +1,35 @@
 {{ 'dtf.css' | asset_url | stylesheet_tag }}
 
 {%- assign items = section.settings.items | split: ',' -%}
+{%- assign items2 = section.settings.items2 | split: ',' -%}
+{%- if items2.size == 0 -%}{%- assign items2 = items -%}{%- endif -%}
 {%- assign colors = '#00aeef,#ec008c,#ffd60a' | split: ',' -%}
-<section class="dtf dtf-ticker" style="--dtf-speed: {{ section.settings.speed }}s" aria-label="{{ section.settings.items | escape }}">
-  <div class="dtf-ticker__track" aria-hidden="true">
-    {%- for copy in (1..2) -%}
-      <div class="dtf-ticker__group">
-        {%- for repeat in (1..2) -%}
-          {%- for item in items -%}
-            {%- assign c = forloop.index0 | modulo: 3 -%}
-            <span class="dtf-ticker__item">{{ item | strip }}</span>
-            <span class="dtf-ticker__dot" style="background: {{ colors[c] }}"></span>
-          {%- endfor -%}
+{%- assign crossed = false -%}
+{%- if section.settings.style == 'crossed' -%}{%- assign crossed = true -%}{%- endif -%}
+<section
+  class="dtf dtf-ticker{% if crossed %} dtf-ticker--crossed{% endif %}"
+  style="--dtf-speed: {{ section.settings.speed }}s"
+  aria-label="{{ section.settings.items | escape }}"
+>
+  {%- for band in (1..2) -%}
+    {%- if band == 2 and crossed == false -%}{%- break -%}{%- endif -%}
+    {%- if band == 1 -%}{%- assign list = items -%}{%- else -%}{%- assign list = items2 -%}{%- endif -%}
+    <div class="dtf-ticker__band dtf-ticker__band--{{ band }}">
+      <div class="dtf-ticker__track" aria-hidden="true">
+        {%- for copy in (1..2) -%}
+          <div class="dtf-ticker__group">
+            {%- for repeat in (1..2) -%}
+              {%- for item in list -%}
+                {%- assign c = forloop.index0 | plus: band | modulo: 3 -%}
+                <span class="dtf-ticker__item">{{ item | strip }}</span>
+                <span class="dtf-ticker__dot" style="background: {{ colors[c] }}"></span>
+              {%- endfor -%}
+            {%- endfor -%}
+          </div>
         {%- endfor -%}
       </div>
-    {%- endfor -%}
-  </div>
+    </div>
+  {%- endfor -%}
 </section>
 
 {% schema %}
@@ -24,11 +38,28 @@
   "tag": "div",
   "settings": [
     {
+      "type": "select",
+      "id": "style",
+      "label": "Style",
+      "options": [
+        { "value": "single", "label": "Single band" },
+        { "value": "crossed", "label": "Two crossed bands" }
+      ],
+      "default": "crossed"
+    },
+    {
       "type": "textarea",
       "id": "items",
       "label": "Items",
       "info": "Separate items with commas.",
       "default": "22\" wide film, 300 DPI, Auto arrange, Pay by the foot, Local pickup, UPS shipping"
+    },
+    {
+      "type": "textarea",
+      "id": "items2",
+      "label": "Second band items",
+      "info": "Crossed style only. Separate items with commas.",
+      "default": "Tees, Hoodies, Totes, Hats, Team gear, Merch drops"
     },
     { "type": "range", "id": "speed", "label": "Speed (seconds per loop)", "min": 10, "max": 80, "step": 5, "default": 35 }
   ],

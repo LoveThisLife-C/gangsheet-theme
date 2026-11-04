@@ -1,0 +1,66 @@
+{{ 'dtf.css' | asset_url | stylesheet_tag }}
+
+<section class="dtf dtf-steps-band">
+  <div class="dtf-wrap">
+    <div class="dtf-head">
+      <h2>{{ section.settings.heading }}</h2>
+      {%- if section.settings.text != blank -%}
+        <div>{{ section.settings.text }}</div>
+      {%- endif -%}
+    </div>
+    <ol class="dtf-steps">
+      {%- for block in section.blocks -%}
+        <li class="dtf-step" {{ block.shopify_attributes }}>
+          <span class="dtf-step__num">{{ forloop.index | prepend: '0' | slice: -2, 2 }}</span>
+          <img src="{{ 'dtf-icon-' | append: block.settings.icon | append: '.svg' | asset_url }}" alt="" width="84" height="84" loading="lazy">
+          <h3>{{ block.settings.title }}</h3>
+          {{ block.settings.text }}
+        </li>
+      {%- endfor -%}
+    </ol>
+    {%- if section.settings.button_label != blank -%}
+      <div class="dtf-actions">
+        <a class="dtf-btn dtf-btn--primary" href="{{ section.settings.button_link }}">{{ section.settings.button_label }}</a>
+      </div>
+    {%- endif -%}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Gang sheet steps",
+  "tag": "div",
+  "settings": [
+    { "type": "text", "id": "heading", "label": "Heading", "default": "How it works" },
+    { "type": "richtext", "id": "text", "label": "Text" },
+    { "type": "text", "id": "button_label", "label": "Button label", "default": "Start building" },
+    { "type": "text", "id": "button_link", "label": "Button link", "default": "/apps/gangsheet/build" }
+  ],
+  "blocks": [
+    {
+      "type": "step",
+      "name": "Step",
+      "settings": [
+        {
+          "type": "select",
+          "id": "icon",
+          "label": "Illustration",
+          "options": [
+            { "value": "upload", "label": "Upload" },
+            { "value": "arrange", "label": "Arrange" },
+            { "value": "dpi", "label": "Print quality" },
+            { "value": "ruler", "label": "Ruler" },
+            { "value": "pickup", "label": "Shop" },
+            { "value": "ship", "label": "Box" }
+          ],
+          "default": "upload"
+        },
+        { "type": "text", "id": "title", "label": "Title", "default": "Step" },
+        { "type": "richtext", "id": "text", "label": "Text", "default": "<p>Describe the step.</p>" }
+      ]
+    }
+  ],
+  "max_blocks": 4,
+  "presets": [{ "name": "Gang sheet steps" }]
+}
+{% endschema %}

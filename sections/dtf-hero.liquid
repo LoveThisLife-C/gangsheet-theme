@@ -50,6 +50,10 @@
           height="240"
         >
       {%- endif -%}
+      {%- unless section.settings.image != blank -%}
+        <img class="dtf-floater dtf-floater--hero1" src="{{ 'dtf-design-star.svg' | asset_url }}" alt="" width="100" height="100" aria-hidden="true">
+        <img class="dtf-floater dtf-floater--hero2" src="{{ 'dtf-design-flame.svg' | asset_url }}" alt="" width="100" height="100" aria-hidden="true">
+      {%- endunless -%}
       {%- if section.settings.sticker_big != blank -%}
         <span class="dtf-sticker" aria-hidden="true">
           <span>{{ section.settings.sticker_big }}<small>{{ section.settings.sticker_small }}</small></span>

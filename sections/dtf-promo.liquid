@@ -1,0 +1,59 @@
+{{ 'dtf.css' | asset_url | stylesheet_tag }}
+
+<section class="dtf" style="--dtf-bg: {{ section.settings.background }}">
+  <div class="dtf-wrap dtf-wrap--tight">
+    <div class="dtf-promo">
+      <div class="dtf-promo__art">
+        {%- if section.settings.image != blank -%}
+          {{ section.settings.image | image_url: width: 900 | image_tag: loading: 'lazy', sizes: '(min-width: 900px) 420px, 90vw' }}
+        {%- else -%}
+          <img src="{{ 'dtf-sheet.svg' | asset_url }}" alt="A gang sheet packed with colorful designs" width="440" height="560" loading="lazy">
+        {%- endif -%}
+      </div>
+      <div class="dtf-promo__body">
+        {%- if section.settings.badge != blank -%}
+          <span class="dtf-eyebrow">{{ section.settings.badge }}</span>
+        {%- endif -%}
+        <h2>{{ section.settings.heading }}</h2>
+        {{ section.settings.text }}
+        {%- if section.settings.price_amount != blank -%}
+          <p class="dtf-price-note">
+            <strong>{{ section.settings.price_amount }}</strong>{{ section.settings.price_text }}
+          </p>
+        {%- endif -%}
+        <div class="dtf-actions">
+          <a class="dtf-btn dtf-btn--primary" href="{{ section.settings.button_link }}">{{ section.settings.button_label }}</a>
+          {%- if section.settings.button2_label != blank -%}
+            <a class="dtf-btn" href="{{ section.settings.button2_link }}">{{ section.settings.button2_label }}</a>
+          {%- endif -%}
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Gang sheet promo",
+  "tag": "div",
+  "settings": [
+    { "type": "color", "id": "background", "label": "Background", "default": "#f6f2ea" },
+    { "type": "text", "id": "badge", "label": "Small label", "default": "Most popular" },
+    { "type": "text", "id": "heading", "label": "Heading", "default": "Custom DTF gang sheets" },
+    {
+      "type": "richtext",
+      "id": "text",
+      "label": "Text",
+      "default": "<p>Upload your own designs and build a 22\" wide sheet online. Pay only for the length you use.</p>"
+    },
+    { "type": "text", "id": "price_amount", "label": "Price highlight", "default": "From $3.80/ft" },
+    { "type": "text", "id": "price_text", "label": "Price note" },
+    { "type": "text", "id": "button_label", "label": "Button label", "default": "Build your gang sheet" },
+    { "type": "text", "id": "button_link", "label": "Button link", "default": "/apps/gangsheet/build" },
+    { "type": "text", "id": "button2_label", "label": "Second button label", "default": "Sizes & pricing" },
+    { "type": "text", "id": "button2_link", "label": "Second button link", "default": "/apps/gangsheet" },
+    { "type": "image_picker", "id": "image", "label": "Photo", "info": "Optional. Replaces the illustration." }
+  ],
+  "presets": [{ "name": "Gang sheet promo" }]
+}
+{% endschema %}

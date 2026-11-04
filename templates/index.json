@@ -20,7 +20,9 @@
       "type": "dtf-ticker",
       "settings": {
         "items": "22\" wide film, 300 DPI, Auto arrange, Pay by the foot, Local pickup, UPS shipping",
-        "speed": 35
+        "speed": 35,
+        "style": "crossed",
+        "items2": "Tees, Hoodies, Totes, Hats, Team gear, Merch drops"
       }
     },
     "why": {
@@ -56,7 +58,11 @@
           }
         }
       },
-      "block_order": ["build", "quality", "foot"]
+      "block_order": [
+        "build",
+        "quality",
+        "foot"
+      ]
     },
     "showcase": {
       "type": "dtf-showcase",
@@ -66,11 +72,33 @@
         "background": "#ffffff"
       },
       "blocks": {
-        "tee": { "type": "tile", "settings": { "art": "tee", "caption": "Tees" } },
-        "hoodie": { "type": "tile", "settings": { "art": "hoodie", "caption": "Hoodies" } },
-        "tote": { "type": "tile", "settings": { "art": "tote", "caption": "Totes & more" } }
+        "tee": {
+          "type": "tile",
+          "settings": {
+            "art": "tee",
+            "caption": "Tees"
+          }
+        },
+        "hoodie": {
+          "type": "tile",
+          "settings": {
+            "art": "hoodie",
+            "caption": "Hoodies"
+          }
+        },
+        "tote": {
+          "type": "tile",
+          "settings": {
+            "art": "tote",
+            "caption": "Totes & more"
+          }
+        }
       },
-      "block_order": ["tee", "hoodie", "tote"]
+      "block_order": [
+        "tee",
+        "hoodie",
+        "tote"
+      ]
     },
     "delivery": {
       "type": "dtf-features",
@@ -97,7 +125,10 @@
           }
         }
       },
-      "block_order": ["pickup", "ship"]
+      "block_order": [
+        "pickup",
+        "ship"
+      ]
     },
     "original": {
       "type": "dtf-cta",
@@ -123,7 +154,117 @@
         "button2_label": "Sizes & pricing",
         "button2_link": "/apps/gangsheet"
       }
+    },
+    "steps": {
+      "type": "dtf-steps",
+      "settings": {
+        "heading": "How it works",
+        "text": "<p>From your files to a print-ready sheet in three steps.</p>",
+        "button_label": "Start building",
+        "button_link": "/apps/gangsheet/build"
+      },
+      "blocks": {
+        "s1": {
+          "type": "step",
+          "settings": {
+            "icon": "upload",
+            "title": "Upload your designs",
+            "text": "<p>PNG, JPG, WEBP or SVG. Remove backgrounds in one click.</p>"
+          }
+        },
+        "s2": {
+          "type": "step",
+          "settings": {
+            "icon": "arrange",
+            "title": "Arrange the sheet",
+            "text": "<p>Drag, resize and rotate, or let Auto arrange pack everything tightly.</p>"
+          }
+        },
+        "s3": {
+          "type": "step",
+          "settings": {
+            "icon": "ship",
+            "title": "Check out",
+            "text": "<p>Pick up locally or ship with UPS. We print it exactly as you built it.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "s1",
+        "s2",
+        "s3"
+      ]
+    },
+    "faq": {
+      "type": "dtf-faq",
+      "settings": {
+        "heading": "Questions?",
+        "text": "<p>Can't find your answer? <a href=\"/pages/contact\">Contact us</a>.</p>",
+        "background": "#ffffff"
+      },
+      "blocks": {
+        "q0": {
+          "type": "question",
+          "settings": {
+            "question": "What is a DTF gang sheet?",
+            "answer": "<p>A gang sheet is one strip of DTF (direct-to-film) transfer film with many designs printed on it. Cut the designs apart and heat press them onto your garments.</p>"
+          }
+        },
+        "q1": {
+          "type": "question",
+          "settings": {
+            "question": "What files can I upload?",
+            "answer": "<p>PNG, JPG, WEBP or SVG. PNG files with a transparent background work best, and the builder can remove simple backgrounds for you.</p>"
+          }
+        },
+        "q2": {
+          "type": "question",
+          "settings": {
+            "question": "How is the price worked out?",
+            "answer": "<p>You pay by the foot of 22\" wide sheet, rounded up to the next whole foot. The more feet in your order, the lower the price per foot. See <a href=\"/apps/gangsheet#gss-pricing\">sizes &amp; pricing</a>.</p>"
+          }
+        },
+        "q3": {
+          "type": "question",
+          "settings": {
+            "question": "What resolution do my images need?",
+            "answer": "<p>Aim for 300 DPI at the size you print. The builder shows each design's DPI and warns you if it's too low.</p>"
+          }
+        },
+        "q4": {
+          "type": "question",
+          "settings": {
+            "question": "Can I pick up my order?",
+            "answer": "<p>Yes. Pick up free at 10920 Hull Street Rd, Midlothian, VA. Orders are usually ready in 2-4 days. You can also ship with UPS Standard or Express.</p>"
+          }
+        },
+        "q5": {
+          "type": "question",
+          "settings": {
+            "question": "What is an original-customer code?",
+            "answer": "<p>If you've ordered with us before, ask us for your code and enter it in the builder to get original-customer pricing.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "q0",
+        "q1",
+        "q2",
+        "q3",
+        "q4",
+        "q5"
+      ]
     }
   },
-  "order": ["hero", "ticker", "why", "showcase", "delivery", "original", "final"]
+  "order": [
+    "hero",
+    "ticker",
+    "steps",
+    "why",
+    "showcase",
+    "delivery",
+    "faq",
+    "original",
+    "final"
+  ]
 }

@@ -1,0 +1,78 @@
+/* Store-wide look: bold display headings, pill buttons with hard shadows.
+   Loaded after the theme's own styles (layout/theme.liquid). */
+@import url("https://fonts.googleapis.com/css2?family=Anton&display=swap");
+
+:root {
+  --dtf-display: "Anton", "Impact", "Arial Narrow", sans-serif;
+  --dtf-ink: #141414;
+  --dtf-magenta: #ec008c;
+}
+
+:is(h1, h2, h3, .h1, .h2, .h3):not(.dtf *, .gss *) {
+  font-family: var(--dtf-display) !important;
+  font-weight: 400 !important;
+  text-transform: uppercase;
+  letter-spacing: 0.01em;
+  line-height: 1;
+}
+
+.button:not(.button-unstyled),
+.button-secondary:not(.button-unstyled) {
+  border: 2.5px solid var(--dtf-ink);
+  font-weight: 700;
+  box-shadow: 4px 4px 0 var(--dtf-magenta);
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+.button-secondary:not(.button-unstyled) {
+  box-shadow: 4px 4px 0 var(--dtf-ink);
+}
+.button:not(.button-unstyled, [disabled], [aria-disabled='true']):hover,
+.button-secondary:not(.button-unstyled, [disabled], [aria-disabled='true']):hover {
+  transform: translate(-2px, -2px);
+  box-shadow: 6px 6px 0 var(--dtf-magenta);
+}
+
+.announcement-bar {
+  font-weight: 700;
+  letter-spacing: 0.08em;
+}
+header-component {
+  border-bottom: 2.5px solid var(--dtf-ink);
+}
+.header__row {
+  background: #fff;
+}
+
+/* Product cards */
+product-card,
+.product-card {
+  border: 2.5px solid var(--dtf-ink);
+  border-radius: 18px;
+  background: #fff;
+  box-shadow: 6px 6px 0 var(--dtf-ink);
+  overflow: hidden;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+product-card:hover,
+.product-card:hover {
+  transform: translate(-2px, -2px);
+  box-shadow: 8px 8px 0 var(--dtf-magenta);
+}
+
+/* Contact and other forms */
+.field__input,
+input[type='text'],
+input[type='email'],
+input[type='tel'],
+textarea {
+  border-width: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .button,
+  .button-secondary,
+  product-card,
+  .product-card {
+    transition: none;
+  }
+}
