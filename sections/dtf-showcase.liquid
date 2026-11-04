@@ -1,0 +1,63 @@
+{{ 'dtf.css' | asset_url | stylesheet_tag }}
+
+<section class="dtf" style="--dtf-bg: {{ section.settings.background }}">
+  <div class="dtf-wrap">
+    <div class="dtf-head">
+      <h2>{{ section.settings.heading }}</h2>
+      {%- if section.settings.text != blank -%}
+        <div>{{ section.settings.text }}</div>
+      {%- endif -%}
+    </div>
+    <div class="dtf-gallery">
+      {%- for block in section.blocks -%}
+        <figure class="dtf-tile" {{ block.shopify_attributes }}>
+          <div class="dtf-tile__media">
+            {%- if block.settings.image != blank -%}
+              {{ block.settings.image | image_url: width: 900 | image_tag: loading: 'lazy', sizes: '(min-width: 900px) 380px, 90vw' }}
+            {%- else -%}
+              <img src="{{ 'dtf-' | append: block.settings.art | append: '.svg' | asset_url }}" alt="{{ block.settings.caption | escape }}" width="240" height="240" loading="lazy">
+            {%- endif -%}
+          </div>
+          {%- if block.settings.caption != blank -%}
+            <figcaption>{{ block.settings.caption }}</figcaption>
+          {%- endif -%}
+        </figure>
+      {%- endfor -%}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Gang sheet showcase",
+  "tag": "div",
+  "settings": [
+    { "type": "text", "id": "heading", "label": "Heading", "default": "Made for shops, teams and makers" },
+    { "type": "richtext", "id": "text", "label": "Text" },
+    { "type": "color", "id": "background", "label": "Background", "default": "#ffffff" }
+  ],
+  "blocks": [
+    {
+      "type": "tile",
+      "name": "Tile",
+      "settings": [
+        {
+          "type": "select",
+          "id": "art",
+          "label": "Illustration",
+          "options": [
+            { "value": "tee", "label": "T-shirt" },
+            { "value": "hoodie", "label": "Hoodie" },
+            { "value": "tote", "label": "Tote bag" }
+          ],
+          "default": "tee"
+        },
+        { "type": "image_picker", "id": "image", "label": "Photo", "info": "Optional. Replaces the illustration. Square photos work best." },
+        { "type": "text", "id": "caption", "label": "Caption", "default": "Tees" }
+      ]
+    }
+  ],
+  "max_blocks": 6,
+  "presets": [{ "name": "Gang sheet showcase" }]
+}
+{% endschema %}

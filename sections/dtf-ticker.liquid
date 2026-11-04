@@ -1,0 +1,37 @@
+{{ 'dtf.css' | asset_url | stylesheet_tag }}
+
+{%- assign items = section.settings.items | split: ',' -%}
+{%- assign colors = '#00aeef,#ec008c,#ffd60a' | split: ',' -%}
+<section class="dtf dtf-ticker" style="--dtf-speed: {{ section.settings.speed }}s" aria-label="{{ section.settings.items | escape }}">
+  <div class="dtf-ticker__track" aria-hidden="true">
+    {%- for copy in (1..2) -%}
+      <div class="dtf-ticker__group">
+        {%- for repeat in (1..2) -%}
+          {%- for item in items -%}
+            {%- assign c = forloop.index0 | modulo: 3 -%}
+            <span class="dtf-ticker__item">{{ item | strip }}</span>
+            <span class="dtf-ticker__dot" style="background: {{ colors[c] }}"></span>
+          {%- endfor -%}
+        {%- endfor -%}
+      </div>
+    {%- endfor -%}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Gang sheet ticker",
+  "tag": "div",
+  "settings": [
+    {
+      "type": "textarea",
+      "id": "items",
+      "label": "Items",
+      "info": "Separate items with commas.",
+      "default": "22\" wide film, 300 DPI, Auto arrange, Pay by the foot, Local pickup, UPS shipping"
+    },
+    { "type": "range", "id": "speed", "label": "Speed (seconds per loop)", "min": 10, "max": 80, "step": 5, "default": 35 }
+  ],
+  "presets": [{ "name": "Gang sheet ticker" }]
+}
+{% endschema %}

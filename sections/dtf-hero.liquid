@@ -1,0 +1,92 @@
+{{ 'dtf.css' | asset_url | stylesheet_tag }}
+
+<section class="dtf dtf-hero">
+  <div class="dtf-wrap">
+    <div>
+      {%- if section.settings.eyebrow != blank -%}
+        <span class="dtf-eyebrow">{{ section.settings.eyebrow }}</span>
+      {%- endif -%}
+      <h1>{{ section.settings.heading | newline_to_br }}</h1>
+      <div class="dtf-lead">{{ section.settings.text }}</div>
+      <div class="dtf-actions">
+        {%- if section.settings.button_label != blank -%}
+          <a class="dtf-btn dtf-btn--primary" href="{{ section.settings.button_link }}">
+            {{- section.settings.button_label -}}
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+        {%- endif -%}
+        {%- if section.settings.button2_label != blank -%}
+          <a class="dtf-btn" href="{{ section.settings.button2_link }}">{{ section.settings.button2_label }}</a>
+        {%- endif -%}
+      </div>
+      {%- if section.settings.price_amount != blank -%}
+        <p class="dtf-price-note">
+          <strong>{{ section.settings.price_amount }}</strong>{{ section.settings.price_text }}
+        </p>
+      {%- endif -%}
+    </div>
+
+    <div class="dtf-collage">
+      {%- if section.settings.image != blank -%}
+        {{
+          section.settings.image
+          | image_url: width: 1200
+          | image_tag: class: 'dtf-collage__photo', sizes: '(min-width: 900px) 520px, 90vw', loading: 'eager'
+        }}
+      {%- else -%}
+        <img
+          class="dtf-collage__sheet"
+          src="{{ 'dtf-sheet.svg' | asset_url }}"
+          alt="A gang sheet packed with colorful designs"
+          width="440"
+          height="560"
+          loading="eager"
+        >
+        <img
+          class="dtf-collage__tee"
+          src="{{ 'dtf-tee.svg' | asset_url }}"
+          alt="T-shirt printed with a sunset design"
+          width="240"
+          height="240"
+        >
+      {%- endif -%}
+      {%- if section.settings.sticker_big != blank -%}
+        <span class="dtf-sticker" aria-hidden="true">
+          <span>{{ section.settings.sticker_big }}<small>{{ section.settings.sticker_small }}</small></span>
+        </span>
+      {%- endif -%}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Gang sheet hero",
+  "tag": "div",
+  "settings": [
+    { "type": "text", "id": "eyebrow", "label": "Small label", "default": "DTF transfers · Midlothian, VA" },
+    { "type": "textarea", "id": "heading", "label": "Heading", "default": "Print it all. Pay by the foot." },
+    {
+      "type": "richtext",
+      "id": "text",
+      "label": "Text",
+      "default": "<p>Upload your designs, arrange them on 22\" wide DTF film, and pay only for the length you use. Every sheet prints at 300 DPI.</p>"
+    },
+    { "type": "text", "id": "button_label", "label": "Main button label", "default": "Build your gang sheet" },
+    { "type": "text", "id": "button_link", "label": "Main button link", "default": "/apps/gangsheet/build" },
+    { "type": "text", "id": "button2_label", "label": "Second button label", "default": "Sizes & pricing" },
+    { "type": "text", "id": "button2_link", "label": "Second button link", "default": "/apps/gangsheet" },
+    { "type": "text", "id": "price_amount", "label": "Price highlight", "default": "$3.80/ft" },
+    { "type": "text", "id": "price_text", "label": "Price note", "default": "for 100+ ft orders. Pickup or UPS shipping." },
+    { "type": "text", "id": "sticker_big", "label": "Sticker big text", "default": "300" },
+    { "type": "text", "id": "sticker_small", "label": "Sticker small text", "default": "DPI print" },
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Photo",
+      "info": "Optional. Replaces the illustration. A portrait photo of your prints works best."
+    }
+  ],
+  "presets": [{ "name": "Gang sheet hero" }]
+}
+{% endschema %}

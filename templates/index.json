@@ -1,0 +1,129 @@
+{
+  "sections": {
+    "hero": {
+      "type": "dtf-hero",
+      "settings": {
+        "eyebrow": "DTF transfers · Midlothian, VA",
+        "heading": "Print it all.\nPay by the foot.",
+        "text": "<p>Upload your designs, arrange them on 22\" wide DTF film, and pay only for the length you use. Every sheet prints at 300 DPI.</p>",
+        "button_label": "Build your gang sheet",
+        "button_link": "/apps/gangsheet/build",
+        "button2_label": "Sizes & pricing",
+        "button2_link": "/apps/gangsheet",
+        "price_amount": "$3.80/ft",
+        "price_text": "for 100+ ft orders. Pickup or UPS shipping.",
+        "sticker_big": "300",
+        "sticker_small": "DPI print"
+      }
+    },
+    "ticker": {
+      "type": "dtf-ticker",
+      "settings": {
+        "items": "22\" wide film, 300 DPI, Auto arrange, Pay by the foot, Local pickup, UPS shipping",
+        "speed": 35
+      }
+    },
+    "why": {
+      "type": "dtf-features",
+      "settings": {
+        "heading": "Why order here",
+        "text": "<p>A gang sheet puts many designs on one strip of film, so you print more for less. Build yours online in minutes.</p>",
+        "background": "#f6f2ea"
+      },
+      "blocks": {
+        "build": {
+          "type": "feature",
+          "settings": {
+            "icon": "arrange",
+            "title": "Build it yourself",
+            "text": "<p>Upload, resize and arrange your designs, or let Auto arrange pack them tightly for you.</p>"
+          }
+        },
+        "quality": {
+          "type": "feature",
+          "settings": {
+            "icon": "dpi",
+            "title": "Sharp 300 DPI prints",
+            "text": "<p>Every sheet prints at 300 DPI. The builder warns you if an image is too low quality.</p>"
+          }
+        },
+        "foot": {
+          "type": "feature",
+          "settings": {
+            "icon": "ruler",
+            "title": "Pay by the foot",
+            "text": "<p>No fixed sizes required. The more feet you order, the lower the price per foot.</p>"
+          }
+        }
+      },
+      "block_order": ["build", "quality", "foot"]
+    },
+    "showcase": {
+      "type": "dtf-showcase",
+      "settings": {
+        "heading": "Made for shops, teams and makers",
+        "text": "<p>Whether you run a custom apparel business, print for a school or team, or make one-off shirts, gang sheets let you print many designs at once and save.</p>",
+        "background": "#ffffff"
+      },
+      "blocks": {
+        "tee": { "type": "tile", "settings": { "art": "tee", "caption": "Tees" } },
+        "hoodie": { "type": "tile", "settings": { "art": "hoodie", "caption": "Hoodies" } },
+        "tote": { "type": "tile", "settings": { "art": "tote", "caption": "Totes & more" } }
+      },
+      "block_order": ["tee", "hoodie", "tote"]
+    },
+    "delivery": {
+      "type": "dtf-features",
+      "settings": {
+        "heading": "Pickup or shipping",
+        "text": "",
+        "background": "#f6f2ea"
+      },
+      "blocks": {
+        "pickup": {
+          "type": "feature",
+          "settings": {
+            "icon": "pickup",
+            "title": "Free local pickup",
+            "text": "<p>Pick up at 10920 Hull Street Rd, Midlothian, VA. Usually ready in 2-4 days.</p>"
+          }
+        },
+        "ship": {
+          "type": "feature",
+          "settings": {
+            "icon": "ship",
+            "title": "UPS shipping",
+            "text": "<p>Ship anywhere with UPS Standard or Express. Sheets are rolled and packed in a sturdy box.</p>"
+          }
+        }
+      },
+      "block_order": ["pickup", "ship"]
+    },
+    "original": {
+      "type": "dtf-cta",
+      "settings": {
+        "style": "color",
+        "background": "#ffd60a",
+        "show_dots": false,
+        "heading": "Ordered with us before?",
+        "text": "<p>Original customers get special pricing. Enter your code in the builder to apply it.</p>",
+        "button_label": "See original-customer prices",
+        "button_link": "/apps/gangsheet#gss-pricing"
+      }
+    },
+    "final": {
+      "type": "dtf-cta",
+      "settings": {
+        "style": "dark",
+        "show_dots": true,
+        "heading": "Ready to print?",
+        "text": "<p>Your designs, your sheet, printed sharp and ready to press.</p>",
+        "button_label": "Start building",
+        "button_link": "/apps/gangsheet/build",
+        "button2_label": "Sizes & pricing",
+        "button2_link": "/apps/gangsheet"
+      }
+    }
+  },
+  "order": ["hero", "ticker", "why", "showcase", "delivery", "original", "final"]
+}

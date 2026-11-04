@@ -1,0 +1,54 @@
+{{ 'dtf.css' | asset_url | stylesheet_tag }}
+
+{%- assign dark = false -%}
+{%- if section.settings.style == 'dark' -%}{%- assign dark = true -%}{%- endif -%}
+<section
+  class="dtf dtf-cta{% if dark %} dtf-cta--dark{% endif %}"
+  style="--dtf-bg: {% if dark %}#141414{% else %}{{ section.settings.background }}{% endif %}"
+>
+  <div class="dtf-wrap">
+    {%- if section.settings.show_dots -%}
+      <div class="dtf-dots" aria-hidden="true">
+        <span style="background:#00aeef"></span><span style="background:#ec008c"></span><span style="background:#ffd60a"></span><span style="background:{% if dark %}#fff{% else %}#141414{% endif %}"></span>
+      </div>
+    {%- endif -%}
+    <h2>{{ section.settings.heading }}</h2>
+    {{ section.settings.text }}
+    {%- if section.settings.button_label != blank -%}
+      <div class="dtf-actions">
+        <a class="dtf-btn dtf-btn--primary" href="{{ section.settings.button_link }}">{{ section.settings.button_label }}</a>
+        {%- if section.settings.button2_label != blank -%}
+          <a class="dtf-btn" href="{{ section.settings.button2_link }}">{{ section.settings.button2_label }}</a>
+        {%- endif -%}
+      </div>
+    {%- endif -%}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Gang sheet call to action",
+  "tag": "div",
+  "settings": [
+    {
+      "type": "select",
+      "id": "style",
+      "label": "Style",
+      "options": [
+        { "value": "color", "label": "Color background" },
+        { "value": "dark", "label": "Dark" }
+      ],
+      "default": "dark"
+    },
+    { "type": "color", "id": "background", "label": "Background (color style)", "default": "#ffd60a" },
+    { "type": "checkbox", "id": "show_dots", "label": "Show CMYK dots", "default": true },
+    { "type": "text", "id": "heading", "label": "Heading", "default": "Ready to print?" },
+    { "type": "richtext", "id": "text", "label": "Text" },
+    { "type": "text", "id": "button_label", "label": "Button label", "default": "Start building" },
+    { "type": "text", "id": "button_link", "label": "Button link", "default": "/apps/gangsheet/build" },
+    { "type": "text", "id": "button2_label", "label": "Second button label" },
+    { "type": "text", "id": "button2_link", "label": "Second button link" }
+  ],
+  "presets": [{ "name": "Gang sheet call to action" }]
+}
+{% endschema %}
