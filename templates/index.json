@@ -137,9 +137,9 @@
         "background": "#ffd60a",
         "show_dots": false,
         "heading": "Ordered with us before?",
-        "text": "<p>Original customers get special pricing. Enter your code in the builder to apply it.</p>",
-        "button_label": "See original-customer prices",
-        "button_link": "/apps/gangsheet#gss-pricing"
+        "text": "<p>Original customers get special pricing. Enter your original-customer code at checkout and your price updates before you pay.</p>",
+        "button_label": "Start building",
+        "button_link": "/apps/gangsheet/build"
       }
     },
     "final": {
@@ -242,7 +242,7 @@
           "type": "question",
           "settings": {
             "question": "What is an original-customer code?",
-            "answer": "<p>If you've ordered with us before, ask us for your code and enter it in the builder to get original-customer pricing.</p>"
+            "answer": "<p>If you've ordered with us before, ask us for your code. Enter it at checkout to get original-customer pricing.</p>"
           }
         }
       },
