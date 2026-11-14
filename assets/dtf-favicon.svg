@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <rect width="64" height="64" rx="14" fill="#141414"/>
+  <g transform="translate(5 0) skewX(-10)">
+    <g fill="#ec008c" transform="translate(2.5 2.5)">
+      <path d="M10 13h8.5l9 19V13h8v38h-8.3L18 31.5V51h-8z"/>
+      <path d="M40 13h8.5v29.5H56V51H40z"/>
+    </g>
+    <path fill="#ffd60a" d="M10 13h8.5l9 19V13h8v38h-8.3L18 31.5V51h-8z"/>
+    <path fill="#00aeef" d="M40 13h8.5v29.5H56V51H40z"/>
+  </g>
+</svg>

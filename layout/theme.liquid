@@ -13,7 +13,11 @@
         type="image/png"
         href="{{ settings.favicon | image_url: width: 32, height: 32 }}"
       >
+    {%- else -%}
+      <link rel="icon" type="image/svg+xml" href="{{ 'dtf-favicon.svg' | asset_url }}">
+      <link rel="icon" type="image/png" sizes="32x32" href="{{ 'dtf-favicon-32.png' | asset_url }}">
     {%- endif -%}
+    <link rel="apple-touch-icon" href="{{ 'dtf-apple-touch-icon.png' | asset_url }}">
 
     {%- render 'view-transition-opt-in' -%}
 
