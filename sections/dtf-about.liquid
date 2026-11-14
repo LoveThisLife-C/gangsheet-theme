@@ -1,0 +1,74 @@
+{{ 'dtf.css' | asset_url | stylesheet_tag }}
+
+<section class="dtf dtf-about" style="--dtf-bg: {{ section.settings.background }}">
+  <div class="dtf-wrap dtf-about__grid">
+    <div class="dtf-about__media">
+      <figure class="dtf-about__flyer">
+        {%- if section.settings.image != blank -%}
+          {{ section.settings.image | image_url: width: 1000 | image_tag: loading: 'lazy', sizes: '(min-width: 900px) 520px, 90vw', alt: section.settings.image_alt }}
+        {%- else -%}
+          <img src="{{ 'dtf-flyer.webp' | asset_url }}" alt="{{ section.settings.image_alt | escape }}" width="1000" height="1000" loading="lazy">
+        {%- endif -%}
+      </figure>
+      {%- if section.settings.show_photo -%}
+        <figure class="dtf-about__photo">
+          {%- if section.settings.photo != blank -%}
+            {{ section.settings.photo | image_url: width: 700 | image_tag: loading: 'lazy', sizes: '280px', alt: section.settings.photo_caption }}
+          {%- else -%}
+            <img src="{{ 'dtf-sheets-photo.webp' | asset_url }}" alt="{{ section.settings.photo_caption | escape }}" width="1200" height="900" loading="lazy">
+          {%- endif -%}
+          {%- if section.settings.photo_caption != blank -%}
+            <figcaption>{{ section.settings.photo_caption }}</figcaption>
+          {%- endif -%}
+        </figure>
+      {%- endif -%}
+    </div>
+    <div class="dtf-about__copy">
+      {%- if section.settings.eyebrow != blank -%}
+        <p class="dtf-eyebrow">{{ section.settings.eyebrow }}</p>
+      {%- endif -%}
+      <h2>{{ section.settings.heading | newline_to_br }}</h2>
+      {{ section.settings.text }}
+      {%- assign chips = section.settings.chips | split: ',' -%}
+      {%- if chips.size > 0 -%}
+        <ul class="dtf-about__chips">
+          {%- for chip in chips -%}
+            <li>{{ chip | strip }}</li>
+          {%- endfor -%}
+        </ul>
+      {%- endif -%}
+      <div class="dtf-actions">
+        {%- if section.settings.button_label != blank -%}
+          <a class="dtf-btn dtf-btn--primary" href="{{ section.settings.button_link }}">{{ section.settings.button_label }}</a>
+        {%- endif -%}
+        {%- if section.settings.button2_label != blank -%}
+          <a class="dtf-btn" href="{{ section.settings.button2_link }}">{{ section.settings.button2_label }}</a>
+        {%- endif -%}
+      </div>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Gang sheet about",
+  "tag": "div",
+  "settings": [
+    { "type": "image_picker", "id": "image", "label": "Main image", "info": "Leave empty to use the No Limits flyer." },
+    { "type": "text", "id": "image_alt", "label": "Main image description", "default": "No Limits Custom DTF Transfers flyer with Scott at the printer" },
+    { "type": "checkbox", "id": "show_photo", "label": "Show photo card", "default": true },
+    { "type": "image_picker", "id": "photo", "label": "Photo card image", "info": "Leave empty to use the printed sheets photo." },
+    { "type": "text", "id": "photo_caption", "label": "Photo caption", "default": "Fresh off the printer" },
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "Meet your printer" },
+    { "type": "textarea", "id": "heading", "label": "Heading", "default": "No limits.\nPrinted right here in Midlothian." },
+    { "type": "richtext", "id": "text", "label": "Text", "default": "<p>Specializing in DTF transfers and gang sheets for your business, sports teams, church, special events and more.</p>" },
+    { "type": "text", "id": "chips", "label": "Tags", "info": "Separate tags with commas.", "default": "Businesses, Sports teams, Churches, Special events" },
+    { "type": "text", "id": "button_label", "label": "Button label", "default": "Build your gang sheet" },
+    { "type": "text", "id": "button_link", "label": "Button link", "default": "/apps/gangsheet/build" },
+    { "type": "text", "id": "button2_label", "label": "Second button label", "default": "Contact us" },
+    { "type": "text", "id": "button2_link", "label": "Second button link", "default": "/pages/contact" },
+    { "type": "color", "id": "background", "label": "Background", "default": "#ffffff" }
+  ],
+  "presets": [{ "name": "Gang sheet about" }]
+}
+{% endschema %}

@@ -242,12 +242,30 @@
         "q4",
         "q5"
       ]
+    },
+    "about": {
+      "type": "dtf-about",
+      "settings": {
+        "image_alt": "No Limits Custom DTF Transfers flyer with Scott at the printer",
+        "show_photo": true,
+        "photo_caption": "Fresh off the printer",
+        "eyebrow": "Meet your printer",
+        "heading": "No limits.\nPrinted right here in Midlothian.",
+        "text": "<p>Specializing in DTF transfers and gang sheets for your business, sports teams, church, special events and more.</p>",
+        "chips": "Businesses, Sports teams, Churches, Special events",
+        "button_label": "Build your gang sheet",
+        "button_link": "/apps/gangsheet/build",
+        "button2_label": "Contact us",
+        "button2_link": "/pages/contact",
+        "background": "#ffffff"
+      }
     }
   },
   "order": [
     "hero",
     "ticker",
     "steps",
+    "about",
     "why",
     "showcase",
     "delivery",

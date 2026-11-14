@@ -770,6 +770,94 @@
     margin-inline: auto;
   }
 }
+/* About: flyer card with a tilted photo snapshot */
+.dtf-about__grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.05fr) minmax(0, 1fr);
+  gap: clamp(40px, 6vw, 88px);
+  align-items: center;
+}
+.dtf-about__media {
+  position: relative;
+}
+.dtf-about__media figure {
+  margin: 0;
+}
+.dtf-about__flyer {
+  background: #fff;
+  border: 2.5px solid var(--dtf-ink);
+  border-radius: 22px;
+  box-shadow: 10px 10px 0 var(--dtf-ink);
+  overflow: hidden;
+  transform: rotate(-1.5deg);
+  width: 94%;
+}
+.dtf-about__flyer img,
+.dtf-about__photo img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+/* Tucked under the flyer's bottom edge so it covers none of its content. */
+.dtf-about__media .dtf-about__photo {
+  position: relative;
+  margin: -10px 0 0 auto;
+  width: 46%;
+  background: #fff;
+  padding: 10px 10px 0;
+  border: 2.5px solid var(--dtf-ink);
+  border-radius: 14px;
+  box-shadow: 6px 6px 0 var(--dtf-magenta);
+  transform: rotate(4deg);
+}
+.dtf-about__photo img {
+  border-radius: 6px;
+}
+.dtf-about__photo figcaption {
+  font-family: var(--dtf-display);
+  text-transform: uppercase;
+  font-size: 15px;
+  letter-spacing: 0.04em;
+  text-align: center;
+  padding: 8px 0 10px;
+}
+.dtf-about__copy h2 {
+  font-size: clamp(40px, 5.4vw, 72px);
+  line-height: 0.95;
+  margin: 0 0 20px;
+}
+.dtf-about__copy p {
+  font-size: 18px;
+  max-width: 30em;
+}
+.dtf-about__chips {
+  list-style: none;
+  padding: 0;
+  margin: 22px 0 6px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+.dtf-about__chips li {
+  border: 2px solid var(--dtf-ink);
+  border-radius: 999px;
+  padding: 6px 14px;
+  font-weight: 700;
+  font-size: 14px;
+  background: var(--dtf-yellow);
+}
+.dtf-about__chips li:nth-child(4n + 2) { background: var(--dtf-cyan); }
+.dtf-about__chips li:nth-child(4n + 3) { background: var(--dtf-magenta); color: #fff; }
+.dtf-about__chips li:nth-child(4n + 4) { background: #fff; }
+@media (max-width: 900px) {
+  .dtf-about__grid {
+    grid-template-columns: 1fr;
+  }
+  .dtf-about__media {
+    max-width: 560px;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   .dtf-ticker__track,
   .dtf-sticker,
