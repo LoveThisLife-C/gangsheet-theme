@@ -11,7 +11,7 @@
         "button2_label": "Sizes & pricing",
         "button2_link": "/apps/gangsheet",
         "price_amount": "$3.80/ft",
-        "price_text": "for 100+ ft orders. Pickup or UPS shipping.",
+        "price_text": "for 100+ ft orders. Same-day pickup or UPS shipping.",
         "sticker_big": "300",
         "sticker_small": "DPI print"
       }
@@ -112,8 +112,8 @@
           "type": "feature",
           "settings": {
             "icon": "pickup",
-            "title": "Free local pickup",
-            "text": "<p>Pick up at 10920 Hull Street Rd, Midlothian, VA. Usually ready in 2-4 days.</p>"
+            "title": "Same-day pickup",
+            "text": "<p>Order by 11am and pick up by 5pm the same day at 10920 Hull Street Rd, Midlothian, VA.</p>"
           }
         },
         "ship": {
@@ -121,7 +121,7 @@
           "settings": {
             "icon": "ship",
             "title": "UPS shipping",
-            "text": "<p>Ship anywhere with UPS Standard or Express. Sheets are rolled and packed in a sturdy box.</p>"
+            "text": "<p>Shipped orders go out the next business day with UPS Standard or Express. Sheets are rolled and packed in a sturdy box.</p>"
           }
         }
       },
@@ -129,18 +129,6 @@
         "pickup",
         "ship"
       ]
-    },
-    "original": {
-      "type": "dtf-cta",
-      "settings": {
-        "style": "color",
-        "background": "#ffd60a",
-        "show_dots": false,
-        "heading": "Ordered with us before?",
-        "text": "<p>Original customers get special pricing. Enter your original-customer code at checkout and your price updates before you pay.</p>",
-        "button_label": "Start building",
-        "button_link": "/apps/gangsheet/build"
-      }
     },
     "final": {
       "type": "dtf-cta",
@@ -185,7 +173,7 @@
           "settings": {
             "icon": "ship",
             "title": "Check out",
-            "text": "<p>Pick up locally or ship with UPS. We print it exactly as you built it.</p>"
+            "text": "<p>Order by 11am for same-day pickup, or ship with UPS. We print it exactly as you built it.</p>"
           }
         }
       },
@@ -234,15 +222,15 @@
         "q4": {
           "type": "question",
           "settings": {
-            "question": "Can I pick up my order?",
-            "answer": "<p>Yes. Pick up free at 10920 Hull Street Rd, Midlothian, VA. Orders are usually ready in 2-4 days. You can also ship with UPS Standard or Express.</p>"
+            "question": "How fast can I get my order?",
+            "answer": "<p>Order by 11am and pick up the same day by 5pm at 10920 Hull Street Rd, Midlothian, VA. Shipped orders go out the next business day with UPS Standard or Express.</p>"
           }
         },
         "q5": {
           "type": "question",
           "settings": {
-            "question": "What is an original-customer code?",
-            "answer": "<p>If you've ordered with us before, ask us for your code. Enter it at checkout to get original-customer pricing.</p>"
+            "question": "Do you have coupon codes?",
+            "answer": "<p>When we run a promotion, enter the coupon code in the checkout box before you pay. Your total updates right away.</p>"
           }
         }
       },
@@ -264,7 +252,6 @@
     "showcase",
     "delivery",
     "faq",
-    "original",
     "final"
   ]
 }
