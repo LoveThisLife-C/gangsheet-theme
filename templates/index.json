@@ -226,6 +226,13 @@
             "answer": "<p>Order by 11am and pick up the same day by 5pm at 10920 Hull Street Rd, Midlothian, VA. Shipped orders go out the next business day with UPS Standard or Express.</p>"
           }
         },
+        "q6": {
+          "type": "question",
+          "settings": {
+            "question": "Should I pick a standard size or my own length?",
+            "answer": "<p>Either works, at the same price per foot. Standard sizes (2, 3, 4, 5, 10, 15 and 20 ft) are handy if you know what you need. With your own length, press Auto arrange or Fit length to designs and the sheet is cut to the next whole foot, so you only pay for the film you use. Orders can go up to 300 ft.</p>"
+          }
+        },
         "q5": {
           "type": "question",
           "settings": {
@@ -240,6 +247,7 @@
         "q2",
         "q3",
         "q4",
+        "q6",
         "q5"
       ]
     },
