@@ -233,6 +233,13 @@
             "answer": "<p>Either works, at the same price per foot. Standard sizes (2, 3, 4, 5, 10, 15 and 20 ft) are handy if you know what you need. With your own length, press Auto arrange or Fit length to designs and the sheet is cut to the next whole foot, so you only pay for the film you use. Orders can go up to 300 ft.</p>"
           }
         },
+        "q7": {
+          "type": "question",
+          "settings": {
+            "question": "What if my artwork is blurry or low quality?",
+            "answer": "<p>Your sheet prints exactly as it looks in the builder, and we print artwork as supplied. The builder shows each design's DPI and warns you if it may print blurry, so please fix those before you order. Before checkout you confirm you've checked your sheet. We can't reprint or refund sheets because of low-quality artwork, spelling mistakes or backgrounds left on designs.</p>"
+          }
+        },
         "q5": {
           "type": "question",
           "settings": {
@@ -246,6 +253,7 @@
         "q1",
         "q2",
         "q3",
+        "q7",
         "q4",
         "q6",
         "q5"
