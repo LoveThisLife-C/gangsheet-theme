@@ -11,7 +11,7 @@
         "button2_label": "Sizes & pricing",
         "button2_link": "/apps/gangsheet",
         "price_amount": "$3.80/ft",
-        "price_text": "for 100+ ft orders. Same-day pickup or UPS shipping.",
+        "price_text": "for 100+ ft orders. Same-day pickup or $9.95 flat-rate shipping.",
         "sticker_big": "300",
         "sticker_small": "DPI print",
         "video_file": "dtf-hero-wide.mp4",
@@ -23,7 +23,7 @@
     "ticker": {
       "type": "dtf-ticker",
       "settings": {
-        "items": "22\" wide film, 300 DPI, Auto arrange, Pay by the foot, Local pickup, UPS shipping",
+        "items": "22\" wide film, 300 DPI, Auto arrange, Pay by the foot, Local pickup, $9.95 flat-rate shipping",
         "speed": 35,
         "style": "crossed",
         "items2": "Tees, Hoodies, Totes, Hats, Team gear, Merch drops"
@@ -127,8 +127,8 @@
           "type": "feature",
           "settings": {
             "icon": "ship",
-            "title": "UPS shipping",
-            "text": "<p>Shipped orders go out the next business day with UPS Standard or Express. Sheets are rolled and packed in a sturdy box.</p>"
+            "title": "$9.95 flat-rate shipping",
+            "text": "<p>One flat rate on every order. Shipped orders go out the next business day and usually arrive in 2–5 business days. Sheets are rolled and packed in a sturdy box.</p>"
           }
         }
       },
@@ -180,7 +180,7 @@
           "settings": {
             "icon": "ship",
             "title": "Check out",
-            "text": "<p>Order by 11am for same-day pickup, or ship with UPS. We print it exactly as you built it.</p>"
+            "text": "<p>Order by 11am for same-day pickup, or ship for a $9.95 flat rate. We print it exactly as you built it.</p>"
           }
         }
       },
@@ -230,7 +230,7 @@
           "type": "question",
           "settings": {
             "question": "How fast can I get my order?",
-            "answer": "<p>Order by 11am and pick up the same day by 5pm at 10920 Hull Street Rd, Midlothian, VA. Shipped orders go out the next business day with UPS Standard or Express.</p>"
+            "answer": "<p>Order by 11am and pick up the same day by 5pm at 10920 Hull Street Rd, Midlothian, VA. Shipped orders go out the next business day for a $9.95 flat rate and usually arrive in 2–5 business days.</p>"
           }
         },
         "q6": {

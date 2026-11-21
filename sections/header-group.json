@@ -17,7 +17,7 @@
         "announcement_BxgCk9": {
           "type": "_announcement",
           "settings": {
-            "text": "Order by 11am for same-day pickup  ·  UPS ships next business day  ·  Printed at 300 DPI",
+            "text": "Order by 11am for same-day pickup  ·  $9.95 flat-rate shipping  ·  Printed at 300 DPI",
             "link": "",
             "font": "var(--font-subheading--family)",
             "font_size": "0.75rem",

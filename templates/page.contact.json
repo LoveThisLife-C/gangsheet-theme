@@ -31,8 +31,8 @@
           "type": "info",
           "settings": {
             "icon": "ship",
-            "title": "UPS shipping",
-            "text": "<p>Ships the next business day. Standard or Express, chosen at checkout.</p>"
+            "title": "$9.95 flat-rate shipping",
+            "text": "<p>Ships the next business day and usually arrives in 2–5 business days.</p>"
           }
         },
         "files": {
