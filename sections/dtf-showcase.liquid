@@ -14,6 +14,8 @@
           <div class="dtf-tile__media">
             {%- if block.settings.image != blank -%}
               {{ block.settings.image | image_url: width: 900 | image_tag: loading: 'lazy', sizes: '(min-width: 900px) 380px, 90vw' }}
+            {%- elsif block.settings.photo_file != blank -%}
+              <img src="{{ block.settings.photo_file | asset_url }}" alt="{{ block.settings.caption | escape }} printed with a No Limits DTF transfer" width="900" height="900" loading="lazy">
             {%- else -%}
               <img src="{{ 'dtf-' | append: block.settings.art | append: '.svg' | asset_url }}" alt="{{ block.settings.caption | escape }}" width="240" height="240" loading="lazy">
             {%- endif -%}
@@ -53,6 +55,7 @@
           "default": "tee"
         },
         { "type": "image_picker", "id": "image", "label": "Photo", "info": "Optional. Replaces the illustration. Square photos work best." },
+        { "type": "text", "id": "photo_file", "label": "Built-in photo file", "info": "Theme asset name, e.g. dtf-photo-tee.webp. Used when no photo is picked above." },
         { "type": "text", "id": "caption", "label": "Caption", "default": "Tees" }
       ]
     }

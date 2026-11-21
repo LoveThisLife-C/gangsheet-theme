@@ -80,6 +80,7 @@
           "type": "tile",
           "settings": {
             "art": "tee",
+            "photo_file": "dtf-photo-tee.webp",
             "caption": "Tees"
           }
         },
@@ -87,6 +88,7 @@
           "type": "tile",
           "settings": {
             "art": "hoodie",
+            "photo_file": "dtf-photo-hoodie.webp",
             "caption": "Hoodies"
           }
         },
@@ -94,6 +96,7 @@
           "type": "tile",
           "settings": {
             "art": "tote",
+            "photo_file": "dtf-photo-tote.webp",
             "caption": "Totes & more"
           }
         }
