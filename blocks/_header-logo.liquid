@@ -58,9 +58,11 @@
     {%- if settings.logo == blank -%}
       {%- comment -%} No logo uploaded in theme settings: use the No Limits logo shipped with the theme (600×198). {%- endcomment -%}
       {%- liquid
-        assign dtf_w = settings.logo_height | times: 600 | divided_by: 198
-        assign dtf_w_mobile = settings.logo_height_mobile | times: 600 | divided_by: 198
-        assign dtf_style = '--header-logo-image-width: ' | append: dtf_w | append: 'px; --header-logo-image-width-mobile: ' | append: dtf_w_mobile | append: 'px; --header-logo-image-height: ' | append: settings.logo_height | append: 'px; --header-logo-image-height-mobile: ' | append: settings.logo_height_mobile | append: 'px;'
+        assign dtf_h = settings.logo_height | at_least: 56
+        assign dtf_h_mobile = settings.logo_height_mobile | at_least: 40
+        assign dtf_w = dtf_h | times: 600 | divided_by: 198
+        assign dtf_w_mobile = dtf_h_mobile | times: 600 | divided_by: 198
+        assign dtf_style = '--header-logo-image-width: ' | append: dtf_w | append: 'px; --header-logo-image-width-mobile: ' | append: dtf_w_mobile | append: 'px; --header-logo-image-height: ' | append: dtf_h | append: 'px; --header-logo-image-height-mobile: ' | append: dtf_h_mobile | append: 'px;'
       -%}
       <img
         src="{{ 'dtf-logo.webp' | asset_url }}"
