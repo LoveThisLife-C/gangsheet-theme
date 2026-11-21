@@ -1,8 +1,57 @@
 {{ 'dtf.css' | asset_url | stylesheet_tag }}
 
-<section class="dtf dtf-hero">
+{%- liquid
+  assign has_video = false
+  if section.settings.video != blank or section.settings.video_file != blank
+    assign has_video = true
+  endif
+-%}
+<section class="dtf dtf-hero{% if has_video %} dtf-hero--video{% endif %}">
+  {%- if has_video -%}
+    <div class="dtf-hero__bg" aria-hidden="true">
+      {%- if section.settings.video != blank -%}
+        {{
+          section.settings.video
+          | video_tag: autoplay: true, muted: true, loop: true, playsinline: true, controls: false, image_size: '1600x'
+        }}
+      {%- else -%}
+        {%- liquid
+          assign wide_src = section.settings.video_file | asset_url
+          assign wide_poster = section.settings.video_poster | asset_url
+          assign tall_src = wide_src
+          assign tall_poster = wide_poster
+          if section.settings.video_file_mobile != blank
+            assign tall_src = section.settings.video_file_mobile | asset_url
+            assign tall_poster = section.settings.video_poster_mobile | asset_url
+          endif
+        -%}
+        <video
+          data-wide="{{ wide_src }}"
+          data-tall="{{ tall_src }}"
+          data-wide-poster="{{ wide_poster }}"
+          data-tall-poster="{{ tall_poster }}"
+          autoplay
+          muted
+          loop
+          playsinline
+          preload="auto"
+        ></video>
+        <script>
+          (function (v) {
+            var tall = window.matchMedia('(max-aspect-ratio: 1/1)').matches;
+            v.poster = tall ? v.dataset.tallPoster : v.dataset.widePoster;
+            v.src = tall ? v.dataset.tall : v.dataset.wide;
+            v.muted = true;
+            var p = v.play && v.play();
+            if (p && p.catch) p.catch(function () {});
+          })(document.currentScript.previousElementSibling);
+        </script>
+      {%- endif -%}
+    </div>
+    <div class="dtf-hero__shade" aria-hidden="true"></div>
+  {%- endif -%}
   <div class="dtf-wrap">
-    <div>
+    <div class="dtf-hero__content">
       {%- if section.settings.eyebrow != blank -%}
         <span class="dtf-eyebrow">{{ section.settings.eyebrow }}</span>
       {%- endif -%}
@@ -26,61 +75,33 @@
       {%- endif -%}
     </div>
 
-    <div class="dtf-collage">
-      {%- if section.settings.video != blank -%}
-        {{
-          section.settings.video
-          | video_tag: autoplay: true, muted: true, loop: true, playsinline: true, controls: false, class: 'dtf-collage__photo dtf-collage__video', image_size: '1000x'
-        }}
-        {%- assign dtf_media = true -%}
-      {%- elsif section.settings.video_file != blank -%}
-        <video
-          class="dtf-collage__photo dtf-collage__video"
-          src="{{ section.settings.video_file | asset_url }}"
-          poster="{{ section.settings.video_poster | asset_url }}"
-          width="720"
-          height="900"
-          autoplay
-          muted
-          loop
-          playsinline
-          preload="auto"
-          aria-label="{{ section.settings.video_alt | escape }}"
-        ></video>
-        {%- assign dtf_media = true -%}
-      {%- elsif section.settings.image != blank -%}
-        {{
-          section.settings.image
-          | image_url: width: 1200
-          | image_tag: class: 'dtf-collage__photo', sizes: '(min-width: 900px) 520px, 90vw', loading: 'eager'
-        }}
-      {%- else -%}
-        <img
-          class="dtf-collage__sheet"
-          src="{{ 'dtf-sheet.svg' | asset_url }}"
-          alt="A gang sheet packed with colorful designs"
-          width="440"
-          height="560"
-          loading="eager"
-        >
-        <img
-          class="dtf-collage__tee"
-          src="{{ 'dtf-tee.svg' | asset_url }}"
-          alt="T-shirt printed with a sunset design"
-          width="240"
-          height="240"
-        >
-      {%- endif -%}
-      {%- unless section.settings.image != blank or dtf_media -%}
-        <img class="dtf-floater dtf-floater--hero1" src="{{ 'dtf-design-star.svg' | asset_url }}" alt="" width="100" height="100" aria-hidden="true">
-        <img class="dtf-floater dtf-floater--hero2" src="{{ 'dtf-design-flame.svg' | asset_url }}" alt="" width="100" height="100" aria-hidden="true">
-      {%- endunless -%}
+    {%- if has_video -%}
       {%- if section.settings.sticker_big != blank -%}
-        <span class="dtf-sticker" aria-hidden="true">
+        <span class="dtf-sticker dtf-hero__sticker" aria-hidden="true">
           <span>{{ section.settings.sticker_big }}<small>{{ section.settings.sticker_small }}</small></span>
         </span>
       {%- endif -%}
-    </div>
+    {%- else -%}
+      <div class="dtf-collage">
+        {%- if section.settings.image != blank -%}
+          {{
+            section.settings.image
+            | image_url: width: 1200
+            | image_tag: class: 'dtf-collage__photo', sizes: '(min-width: 900px) 520px, 90vw', loading: 'eager'
+          }}
+        {%- else -%}
+          <img class="dtf-collage__sheet" src="{{ 'dtf-sheet.svg' | asset_url }}" alt="A gang sheet packed with colorful designs" width="440" height="560" loading="eager">
+          <img class="dtf-collage__tee" src="{{ 'dtf-tee.svg' | asset_url }}" alt="T-shirt printed with a sunset design" width="240" height="240">
+          <img class="dtf-floater dtf-floater--hero1" src="{{ 'dtf-design-star.svg' | asset_url }}" alt="" width="100" height="100" aria-hidden="true">
+          <img class="dtf-floater dtf-floater--hero2" src="{{ 'dtf-design-flame.svg' | asset_url }}" alt="" width="100" height="100" aria-hidden="true">
+        {%- endif -%}
+        {%- if section.settings.sticker_big != blank -%}
+          <span class="dtf-sticker" aria-hidden="true">
+            <span>{{ section.settings.sticker_big }}<small>{{ section.settings.sticker_small }}</small></span>
+          </span>
+        {%- endif -%}
+      </div>
+    {%- endif -%}
   </div>
 </section>
 
@@ -109,11 +130,12 @@
       "type": "video",
       "id": "video",
       "label": "Video",
-      "info": "Optional. Upload your own video to replace the built-in printer video."
+      "info": "Optional. Upload your own background video to replace the built-in printer video."
     },
-    { "type": "text", "id": "video_file", "label": "Built-in video file", "default": "dtf-hero.mp4", "info": "Theme asset name. Clear it to show the photo or illustration instead." },
-    { "type": "text", "id": "video_poster", "label": "Built-in video poster", "default": "dtf-hero-poster.jpg" },
-    { "type": "text", "id": "video_alt", "label": "Video description", "default": "Our DTF printer printing No Limits transfers" },
+    { "type": "text", "id": "video_file", "label": "Built-in background video (wide screens)", "default": "dtf-hero-wide.mp4", "info": "Theme asset name. Clear it to show the photo or illustration instead." },
+    { "type": "text", "id": "video_poster", "label": "Built-in video poster (wide screens)", "default": "dtf-hero-wide-poster.jpg" },
+    { "type": "text", "id": "video_file_mobile", "label": "Built-in background video (phones)", "default": "dtf-hero.mp4" },
+    { "type": "text", "id": "video_poster_mobile", "label": "Built-in video poster (phones)", "default": "dtf-hero-poster.jpg" },
     {
       "type": "image_picker",
       "id": "image",
