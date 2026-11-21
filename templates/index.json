@@ -13,7 +13,10 @@
         "price_amount": "$3.80/ft",
         "price_text": "for 100+ ft orders. Same-day pickup or UPS shipping.",
         "sticker_big": "300",
-        "sticker_small": "DPI print"
+        "sticker_small": "DPI print",
+        "video_file": "dtf-hero.mp4",
+        "video_poster": "dtf-hero-poster.jpg",
+        "video_alt": "Our DTF printer printing No Limits transfers"
       }
     },
     "ticker": {

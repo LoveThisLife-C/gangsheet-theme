@@ -156,6 +156,16 @@
   object-fit: cover;
   width: 100%;
 }
+.dtf-collage__video {
+  display: block;
+  height: auto;
+  background: var(--dtf-ink);
+  transform: rotate(-2deg);
+  box-shadow: 10px 10px 0 var(--dtf-magenta), 20px 20px 0 var(--dtf-ink);
+}
+.dtf-collage:has(.dtf-collage__video) {
+  padding: 0 24px 24px 0;
+}
 .dtf-collage__tee {
   position: absolute;
   left: 0;

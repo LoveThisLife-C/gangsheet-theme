@@ -55,14 +55,31 @@
     {% endif %}
     data-testid="header-logo"
   >
-    {% render 'image',
-      image: settings.logo,
-      class: 'header-logo__image',
-      height: settings.logo_height,
-      alt_text_fallback: alt_text_fallback,
-      text_fallback: shop.name,
-      style: logo_style
-    %}
+    {%- if settings.logo == blank -%}
+      {%- comment -%} No logo uploaded in theme settings: use the No Limits logo shipped with the theme (600×198). {%- endcomment -%}
+      {%- liquid
+        assign dtf_w = settings.logo_height | times: 600 | divided_by: 198
+        assign dtf_w_mobile = settings.logo_height_mobile | times: 600 | divided_by: 198
+        assign dtf_style = '--header-logo-image-width: ' | append: dtf_w | append: 'px; --header-logo-image-width-mobile: ' | append: dtf_w_mobile | append: 'px; --header-logo-image-height: ' | append: settings.logo_height | append: 'px; --header-logo-image-height-mobile: ' | append: settings.logo_height_mobile | append: 'px;'
+      -%}
+      <img
+        src="{{ 'dtf-logo.webp' | asset_url }}"
+        alt="{{ shop.name | escape }}"
+        class="header-logo__image"
+        width="600"
+        height="198"
+        style="{{ dtf_style }}"
+      >
+    {%- else -%}
+      {% render 'image',
+        image: settings.logo,
+        class: 'header-logo__image',
+        height: settings.logo_height,
+        alt_text_fallback: alt_text_fallback,
+        text_fallback: shop.name,
+        style: logo_style
+      %}
+    {%- endif -%}
   </span>
 
   {% if use_inverse_logo %}
