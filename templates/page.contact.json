@@ -32,15 +32,15 @@
           "settings": {
             "icon": "ship",
             "title": "$9.95 flat-rate shipping",
-            "text": "<p>Ships the next business day and usually arrives in 2–5 business days.</p>"
+            "text": "<p>Ships the next business day to the continental US (lower 48 states) and usually arrives in 3–5 business days.</p>"
           }
         },
         "files": {
           "type": "info",
           "settings": {
             "icon": "dpi",
-            "title": "Help with files",
-            "text": "<p>Include your order number and we'll check your sheet.</p>"
+            "title": "Call or email",
+            "text": "<p><a href=\"tel:+18042434402\">(804) 243-4402</a><br><a href=\"mailto:dtfbyscott@aol.com\">dtfbyscott@aol.com</a><br>Include your order number for help with files.</p>"
           }
         }
       },
