@@ -1,0 +1,132 @@
+{{ 'dtf.css' | asset_url | stylesheet_tag }}
+
+{%- liquid
+  assign phone_digits = section.settings.phone | remove: '(' | remove: ')' | remove: ' ' | remove: '-' | remove: '.'
+  assign map_url = section.settings.address | url_encode | prepend: 'https://www.google.com/maps/search/?api=1&query='
+  assign shop_menu = linklists[section.settings.shop_menu]
+-%}
+
+<footer class="dtf dtf-footer">
+  <div class="dtf-footer__stripe" aria-hidden="true"></div>
+  <div class="dtf-footer__main">
+    <div class="dtf-footer__grid">
+      <div class="dtf-footer__brand">
+        <a href="{{ routes.root_url }}" class="dtf-footer__logo">
+          <img src="{{ 'dtf-logo.webp' | asset_url }}" alt="{{ shop.name | escape }}" width="600" height="198" loading="lazy">
+        </a>
+        {%- if section.settings.tagline != blank -%}
+          <p class="dtf-footer__tagline">{{ section.settings.tagline }}</p>
+        {%- endif -%}
+        <ul class="dtf-footer__contact" role="list">
+          {%- if section.settings.address != blank -%}
+            <li>
+              <img src="{{ 'dtf-icon-pickup.svg' | asset_url }}" alt="" width="28" height="28" loading="lazy">
+              <span>{{ section.settings.address }}<br><a href="{{ map_url }}" target="_blank" rel="noopener">Get directions</a></span>
+            </li>
+          {%- endif -%}
+          {%- if section.settings.phone != blank -%}
+            <li>
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6.6 10.8a15.1 15.1 0 0 0 6.6 6.6l2.2-2.2a1 1 0 0 1 1-.25 11.4 11.4 0 0 0 3.6.57 1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1c0 1.25.2 2.45.57 3.57a1 1 0 0 1-.25 1z" fill="currentColor"/></svg>
+              <a href="tel:+1{{ phone_digits }}">{{ section.settings.phone }}</a>
+            </li>
+          {%- endif -%}
+          {%- if section.settings.email != blank -%}
+            <li>
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 5h18a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1zm9 7.2L4 7.4V17h16V7.4z" fill="currentColor"/></svg>
+              <a href="mailto:{{ section.settings.email }}">{{ section.settings.email }}</a>
+            </li>
+          {%- endif -%}
+          {%- if section.settings.hours != blank -%}
+            <li>
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a10 10 0 1 1 0 20 10 10 0 0 1 0-20zm0 2a8 8 0 1 0 0 16 8 8 0 0 0 0-16zm1 3v4.6l3.2 1.9-1 1.7L11 12.7V7z" fill="currentColor"/></svg>
+              <span>{{ section.settings.hours }}</span>
+            </li>
+          {%- endif -%}
+        </ul>
+      </div>
+
+      <nav class="dtf-footer__col" aria-label="{{ section.settings.shop_heading | escape }}">
+        <h2 class="dtf-footer__heading">{{ section.settings.shop_heading }}</h2>
+        <ul role="list">
+          {%- for link in shop_menu.links -%}
+            {%- unless link.url == routes.root_url or link.url contains '/pages/contact' -%}
+              <li><a href="{{ link.url }}">{{ link.title }}</a></li>
+            {%- endunless -%}
+          {%- endfor -%}
+          {%- if section.settings.extra_label != blank -%}
+            <li><a href="{{ section.settings.extra_link }}">{{ section.settings.extra_label }}</a></li>
+          {%- endif -%}
+        </ul>
+      </nav>
+
+      <nav class="dtf-footer__col" aria-label="{{ section.settings.help_heading | escape }}">
+        <h2 class="dtf-footer__heading">{{ section.settings.help_heading }}</h2>
+        <ul role="list">
+          <li><a href="{{ section.settings.contact_link }}">Contact us</a></li>
+          <li><a href="{{ routes.root_url }}#faq">FAQ</a></li>
+          {%- if shop.shipping_policy -%}<li><a href="{{ shop.shipping_policy.url }}">Shipping</a></li>{%- endif -%}
+          {%- if shop.refund_policy -%}<li><a href="{{ shop.refund_policy.url }}">Refunds &amp; reprints</a></li>{%- endif -%}
+          <li><a href="{{ routes.account_url }}">My account</a></li>
+        </ul>
+      </nav>
+
+      <div class="dtf-footer__news">
+        <h2 class="dtf-footer__news-heading">{{ section.settings.news_heading }}</h2>
+        {%- if section.settings.news_text != blank -%}<p>{{ section.settings.news_text }}</p>{%- endif -%}
+        {%- form 'customer', id: 'dtf-footer-newsletter', class: 'dtf-footer__form' -%}
+          <input type="hidden" name="contact[tags]" value="newsletter">
+          {%- if form.posted_successfully? -%}
+            <p class="dtf-footer__ok" role="status">Thanks for signing up!</p>
+          {%- else -%}
+            <label class="visually-hidden" for="dtf-footer-email">Email address</label>
+            <input id="dtf-footer-email" type="email" name="contact[email]" placeholder="Email address" autocomplete="email" required>
+            <button type="submit" class="dtf-btn dtf-btn--primary">Sign up</button>
+            {%- if form.errors -%}<p class="dtf-footer__err" role="alert">{{ form.errors.translated_fields.email | capitalize }} {{ form.errors.messages.email }}</p>{%- endif -%}
+          {%- endif -%}
+        {%- endform -%}
+      </div>
+    </div>
+  </div>
+
+  <div class="dtf-footer__bar">
+    <div class="dtf-footer__bar-inner">
+      <p class="dtf-footer__copy">&copy; {{ 'now' | date: '%Y' }} {{ shop.name }}</p>
+      <ul class="dtf-footer__policies" role="list">
+        {%- for policy in shop.policies -%}
+          <li><a href="{{ policy.url }}">{{ policy.title }}</a></li>
+        {%- endfor -%}
+      </ul>
+      {%- if section.settings.show_payment_icons and shop.enabled_payment_types.size > 0 -%}
+        <ul class="dtf-footer__pay" role="list" aria-label="Payment methods we accept">
+          {%- for type in shop.enabled_payment_types -%}
+            <li>{{ type | payment_type_svg_tag }}</li>
+          {%- endfor -%}
+        </ul>
+      {%- endif -%}
+    </div>
+  </div>
+</footer>
+
+{% schema %}
+{
+  "name": "No Limits footer",
+  "tag": "div",
+  "settings": [
+    { "type": "text", "id": "tagline", "label": "Tagline", "default": "Custom DTF transfers and gang sheets, printed at 300 DPI in Midlothian, VA." },
+    { "type": "text", "id": "address", "label": "Address", "default": "10920 Hull Street Rd, Midlothian, VA 23112" },
+    { "type": "text", "id": "phone", "label": "Phone", "default": "(804) 243-4402" },
+    { "type": "text", "id": "email", "label": "Email", "default": "dtfbyscott@aol.com" },
+    { "type": "text", "id": "hours", "label": "Pickup note", "default": "Order by 11am, pick up by 5pm" },
+    { "type": "text", "id": "shop_heading", "label": "Shop column heading", "default": "Shop" },
+    { "type": "link_list", "id": "shop_menu", "label": "Shop menu", "default": "main-menu" },
+    { "type": "text", "id": "extra_label", "label": "Extra shop link label", "default": "Sizes & pricing" },
+    { "type": "text", "id": "extra_link", "label": "Extra shop link", "default": "/apps/gangsheet#gss-pricing" },
+    { "type": "text", "id": "help_heading", "label": "Help column heading", "default": "Help" },
+    { "type": "text", "id": "contact_link", "label": "Contact page link", "default": "/pages/contact" },
+    { "type": "text", "id": "news_heading", "label": "Sign-up heading", "default": "Get deals first" },
+    { "type": "text", "id": "news_text", "label": "Sign-up text", "default": "Coupons, new sizes and early access. No spam." },
+    { "type": "checkbox", "id": "show_payment_icons", "label": "Show payment icons", "default": true }
+  ],
+  "presets": [{ "name": "No Limits footer" }]
+}
+{% endschema %}
